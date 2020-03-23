@@ -19,7 +19,7 @@ namespace XamForms.Controls
             float r = 0;
             for (int i = t - columns; i > -1; i -= columns)
             {
-                r += Pattern[i].HightPercent;
+                r += Pattern[i].HeightPercent;
             }
             return r;
         }

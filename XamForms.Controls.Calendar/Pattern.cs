@@ -5,7 +5,7 @@ namespace XamForms.Controls
     public struct Pattern
     {
         public float WidthPercent { get; set; }
-        public float HightPercent { get; set; }
+        public float HeightPercent { get; set; }
         public Color Color { get; set; }
 
         public string Text { get; set; }

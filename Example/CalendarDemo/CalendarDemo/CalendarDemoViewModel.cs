@@ -62,10 +62,10 @@ namespace CalendarDemo
                     {
                         Pattern = new List<Pattern>
                         {
-                            new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Red},
-                            new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Purple},
-                            new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Green},
-                            new Pattern{ WidthPercent = 1f, HightPercent = 0.25f, Color = Color.Yellow,Text = "Test", TextColor=Color.DarkBlue, TextSize=11, TextAlign=TextAlign.Middle}
+                            new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Red},
+                            new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Purple},
+                            new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Green},
+                            new Pattern{ WidthPercent = 1f, HeightPercent = 0.25f, Color = Color.Yellow,Text = "Test", TextColor=Color.DarkBlue, TextSize=11, TextAlign=TextAlign.Middle}
                         }
                     }
                 },
@@ -76,8 +76,8 @@ namespace CalendarDemo
                     {
                         Pattern = new List<Pattern>
                         {
-                            new Pattern{ WidthPercent = 1f, HightPercent = 0.5f, Color = Color.Red},
-                            new Pattern{ WidthPercent = 1f, HightPercent = 0.5f, Color = Color.Purple},
+                            new Pattern{ WidthPercent = 1f, HeightPercent = 0.5f, Color = Color.Red},
+                            new Pattern{ WidthPercent = 1f, HeightPercent = 0.5f, Color = Color.Purple},
                         }
                     },
                     BackgroundImage = ImageSource.FromFile("ic_calendarCircle.png") as FileImageSource
