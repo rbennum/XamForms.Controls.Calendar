@@ -84,7 +84,7 @@ namespace XamForms.Controls
 
         public static readonly BindableProperty MinDateProperty =
             BindableProperty.Create(nameof(MinDate), typeof(DateTime?), typeof(Calendar), null,
-                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalandarChanges.MaxMin));
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.MaxMin));
 
         /// <summary>
         /// Gets or sets the minimum date.
@@ -93,7 +93,7 @@ namespace XamForms.Controls
         public DateTime? MinDate
         {
             get { return (DateTime?)GetValue(MinDateProperty); }
-            set { SetValue(MinDateProperty, value); ChangeCalendar(CalandarChanges.MaxMin); }
+            set { SetValue(MinDateProperty, value); ChangeCalendar(CalendarChanges.MaxMin); }
         }
 
         #endregion
@@ -102,7 +102,7 @@ namespace XamForms.Controls
 
         public static readonly BindableProperty MaxDateProperty =
             BindableProperty.Create(nameof(MaxDate), typeof(DateTime?), typeof(Calendar), null,
-                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalandarChanges.MaxMin));
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.MaxMin));
 
         /// <summary>
         /// Gets or sets the max date.
@@ -120,7 +120,7 @@ namespace XamForms.Controls
 
         public static readonly BindableProperty StartDateProperty =
             BindableProperty.Create(nameof(StartDate), typeof(DateTime), typeof(Calendar), DateTime.Now,
-                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalandarChanges.StartDate));
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.StartDate));
 
         /// <summary>
         /// Gets or sets a date, to pick the month, the calendar is focused on
@@ -138,7 +138,7 @@ namespace XamForms.Controls
 
         public static readonly BindableProperty StartDayProperty =
             BindableProperty.Create(nameof(StartDate), typeof(DayOfWeek), typeof(Calendar), DayOfWeek.Sunday,
-                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalandarChanges.StartDay));
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.StartDay));
 
         /// <summary>
         /// Gets or sets the day the calendar starts the week with.
@@ -342,7 +342,7 @@ namespace XamForms.Controls
 
         public static readonly BindableProperty ShowNumOfMonthsProperty =
             BindableProperty.Create(nameof(ShowNumOfMonths), typeof(int), typeof(Calendar), 1,
-                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalandarChanges.All));
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.All));
 
         /// <summary>
         /// Gets or sets a the number of months to show
@@ -360,7 +360,7 @@ namespace XamForms.Controls
 
         public static readonly BindableProperty ShowInBetweenMonthLabelsProperty =
             BindableProperty.Create(nameof(ShowInBetweenMonthLabels), typeof(bool), typeof(Calendar), true,
-                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalandarChanges.All));
+                                    propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeCalendar(CalendarChanges.All));
 
         /// <summary>
         /// Gets or sets a the number of months to show
@@ -409,7 +409,7 @@ namespace XamForms.Controls
         {
             FillCalendarWindows();
             base.OnParentSet();
-            ChangeCalendar(CalandarChanges.All);
+            ChangeCalendar(CalendarChanges.All);
         }
 
         protected Task FillCalendar()
@@ -422,12 +422,12 @@ namespace XamForms.Controls
 
         protected void FillCalendarWindows()
         {
-            CreateWeeknumbers();
+            CreateWeekNumbers();
             CreateButtons();
             ShowHideElements();
         }
 
-        protected void CreateWeeknumbers()
+        protected void CreateWeekNumbers()
         {
             weekNumberLabels.Clear();
             WeekNumbers.Clear();
@@ -466,14 +466,14 @@ namespace XamForms.Controls
 
         protected void CreateButtons()
         {
-            var columDef = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) };
+            var columnDef = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) };
             var rowDef = new RowDefinition { Height = new GridLength(1, GridUnitType.Star) };
             buttons.Clear();
             MainCalendars.Clear();
             for (var i = 0; i < ShowNumOfMonths; i++)
             {
                 var mainCalendar = new Grid { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, RowSpacing = GridSpace, ColumnSpacing = GridSpace, Padding = 1, BackgroundColor = BorderColor };
-                mainCalendar.ColumnDefinitions = new ColumnDefinitionCollection { columDef, columDef, columDef, columDef, columDef, columDef, columDef };
+                mainCalendar.ColumnDefinitions = new ColumnDefinitionCollection { columnDef, columnDef, columnDef, columnDef, columnDef, columnDef, columnDef };
                 mainCalendar.RowDefinitions = new RowDefinitionCollection { rowDef, rowDef, rowDef, rowDef, rowDef, rowDef };
 
                 for (int r = 0; r < 6; r++)
@@ -482,7 +482,7 @@ namespace XamForms.Controls
                     {
                         buttons.Add(new CalendarButton
                         {
-                            BorderRadius = 0,
+                            CornerRadius = 0,
                             BorderWidth = BorderWidth,
                             BorderColor = BorderColor,
                             FontSize = DatesFontSize,
@@ -504,16 +504,16 @@ namespace XamForms.Controls
 
         public void ForceRedraw()
         {
-            ChangeCalendar(CalandarChanges.All);
+            ChangeCalendar(CalendarChanges.All);
         }
 
-        protected void ChangeCalendar(CalandarChanges changes)
+        protected void ChangeCalendar(CalendarChanges changes)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
                 OnStartRenderCalendar?.Invoke(this, EventArgs.Empty);
                 Content = null;
-                if (changes.HasFlag(CalandarChanges.StartDate))
+                if (changes.HasFlag(CalendarChanges.StartDate))
                 {
                     TitleLabel.Text = StartDate.ToString(TitleLabelFormat);
                     if (TitleLabels != null)
@@ -530,25 +530,25 @@ namespace XamForms.Controls
                 var start = CalendarStartDate(StartDate).Date;
                 var beginOfMonth = false;
                 var endOfMonth = false;
-                for (int i = 0; i < buttons.Count; i++)
+                for (var i = 0; i < buttons.Count; i++)
                 {
                     endOfMonth |= beginOfMonth && start.Day == 1;
                     beginOfMonth |= start.Day == 1;
 
-                    if (i < dayLabels.Count && WeekdaysShow && changes.HasFlag(CalandarChanges.StartDay))
+                    if (i < dayLabels.Count && WeekdaysShow && changes.HasFlag(CalendarChanges.StartDay))
                     {
                         dayLabels[i].Text = start.ToString(WeekdaysFormat);
                     }
 
                     ChangeWeekNumbers(start, i);
 
-                    if (changes.HasFlag(CalandarChanges.All))
+                    if (changes.HasFlag(CalendarChanges.All))
                     {
-                        buttons[i].Text = string.Format("{0}", start.Day);
+                        buttons[i].Text = $"{start.Day}";
                     }
                     else
                     {
-                        buttons[i].TextWithoutMeasure = string.Format("{0}", start.Day);
+                        buttons[i].TextWithoutMeasure = $"{start.Day}";
                     }
                     buttons[i].Date = start;
 
@@ -597,11 +597,10 @@ namespace XamForms.Controls
 
         protected void SetButtonNormal(CalendarButton button)
         {
-            button.BackgroundPattern = null;
-            button.BackgroundImage = null;
-
-            Device.BeginInvokeOnMainThread(() =>
+	        Device.BeginInvokeOnMainThread(() =>
             {
+	            button.BackgroundPattern = null;
+	            button.BackgroundImage = null;
                 button.IsEnabled = true;
                 button.IsSelected = false;
                 button.FontSize = DatesFontSize;

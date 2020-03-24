@@ -292,15 +292,15 @@ namespace XamForms.Controls
             }
         }
 
-        protected void ResetButton(CalendarButton b)
+        protected void ResetButton(CalendarButton button)
         {
-            if (b.Date.HasValue) SelectedDates.Remove(b.Date.Value.Date);
-            var spD = SpecialDates?.FirstOrDefault(s => s.Date.Date == b.Date.Value.Date);
-            SetButtonNormal(b);
-            if (spD != null)
-            {
-                SetButtonSpecial(b, spD);
-            }
+            if (!button.Date.HasValue) return;
+
+            var specDate = SpecialDates?.FirstOrDefault(s => s.Date.Date == button.Date.Value.Date);
+            SetButtonNormal(button);
+
+            if (specDate != null)
+	            SetButtonSpecial(button, specDate);
         }
     }
 }

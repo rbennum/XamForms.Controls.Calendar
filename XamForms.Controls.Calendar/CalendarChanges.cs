@@ -3,7 +3,7 @@
 namespace XamForms.Controls
 {
 	[Flags]
-	public enum CalandarChanges
+	public enum CalendarChanges
 	{
 		MaxMin = 1,
 		StartDate = 1 << 1,
