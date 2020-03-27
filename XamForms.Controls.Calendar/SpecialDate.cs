@@ -5,6 +5,10 @@ namespace XamForms.Controls
 {
     public class SpecialDate
     {
+		public SpecialDate()
+		{
+		}
+
         public SpecialDate(DateTime date)
         {
             Date = date;

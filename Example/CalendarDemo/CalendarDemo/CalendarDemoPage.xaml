@@ -11,7 +11,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <Label
                 Grid.Row="0"
                 Text="Hi there 👋"
@@ -20,6 +19,7 @@
                 VerticalOptions="End"
                 Margin="20" />
             <controls:Calendar
+	            x:Name="TestCalendar"
                 Grid.Row="1"
                 Padding="10,0,10,0"
                 SelectedBorderWidth="4"

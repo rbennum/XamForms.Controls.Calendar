@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
+using XamForms.Controls;
 
 namespace CalendarDemo
 {
@@ -8,6 +10,15 @@ namespace CalendarDemo
         {
             InitializeComponent();
             BindingContext = new CalendarDemoViewModel();
+
+            TestCalendar.WeeklyEvents.Add(new WeeklyEvent
+            {
+	            DayOfWeek = DayOfWeek.Saturday
+            });
+            TestCalendar.WeeklyEvents.Add(new WeeklyEvent
+            {
+	            DayOfWeek = DayOfWeek.Sunday
+            });
         }
     }
 }
